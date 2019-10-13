@@ -11,8 +11,12 @@ int main(int argc, char **argv) {
 	for (uint i = 0; i < 100; i++) {
 		std_msgs::UInt32 num;
 		num.data = i;
-		ROS_INFO("%u", num.data);
-		stream_pub.publish(num);
+		if (rand() % 2 == 0) {
+			ROS_INFO("%u SENT", num.data);
+			stream_pub.publish(num);
+		} else {
+			ROS_INFO("%u DROPPED", num.data);
+		}
 		ros::spinOnce();
 		loop_rate.sleep();
 	}
