@@ -11,7 +11,7 @@ int main(int argc, char **argv) {
 	for (uint i = 0; i < 100; i++) {
 		std_msgs::UInt32 num;
 		num.data = i;
-		if (rand() % 2 == 0) {
+		if (rand() % 100 < 25) {
 			ROS_INFO("%u SENT", num.data);
 			stream_pub.publish(num);
 		} else {

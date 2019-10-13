@@ -17,9 +17,11 @@ int main(int argc, char **argv) {
 	ros::Rate loop_rate(1000);
 	while (ros::ok()) {
 		timer++;
-		if (start && timer > 1000) {
-			ROS_ERROR("1s with no input from stream, termination");
+		if (start && timer == 5000) {
+			ROS_ERROR("%us with no input from stream, terminating", timer / 1000);
 			return 0;
+		} else if (start && timer % 1000 == 0) {
+			ROS_ERROR("%us with no input from stream", timer / 1000);
 		}
 		ros::spinOnce();
 		loop_rate.sleep();
