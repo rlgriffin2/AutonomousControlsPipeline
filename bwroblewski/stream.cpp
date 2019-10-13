@@ -5,7 +5,8 @@ int main(int argc, char **argv) {
 	ros::init(argc, argv, "stream");
 	ros::NodeHandle n;
 	ros::Publisher stream_pub = n.advertise<std_msgs::UInt32>("stream", 1000);
-	ros::Rate loop_rate(2);
+	// set publishing rate
+	ros::Rate loop_rate(10);
 
 	for (uint i = 0; i < 100; i++) {
 		std_msgs::UInt32 num;
