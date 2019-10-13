@@ -8,10 +8,10 @@ int main(int argc, char **argv) {
 	// set publishing rate
 	ros::Rate loop_rate(10);
 
-	for (uint i = 0; i < 100; i++) {
+	for (uint i = 0; ros::ok(); i++) {
 		std_msgs::UInt32 num;
 		num.data = i;
-		if (rand() % 100 < 25) {
+		if (rand() % 100 < 15) {
 			ROS_INFO("%u SENT", num.data);
 			stream_pub.publish(num);
 		} else {
