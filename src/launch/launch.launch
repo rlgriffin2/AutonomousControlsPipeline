@@ -1,0 +1,6 @@
+<launch>
+<node name="n_mainoutnode" pkg="realtime" type="n_mainoutnode" output="screen"/>
+<node name="n_delaypublish" pkg="realtime" type="n_delaypublish" />
+<node name="n_catchdelay" pkg="realtime" type="n_catchdelay" />
+<node name="n_timerdelay" pkg="realtime" type="n_timerdelay" />
+</launch>
