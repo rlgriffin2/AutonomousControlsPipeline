@@ -15,7 +15,6 @@
 #include <stdlib.h>
 #include <chrono>
 #include <thread>
-#include <boost/bind.hpp>
 
 using namespace std::chrono;
 
@@ -33,7 +32,6 @@ TopicReq** topics;
 
 // Cal back for topic
 void recievedMessage(const std_msgs::String::ConstPtr& msg, int channel) {
-  // ROS_INFO("Message : [%s]", msg->data.c_str());
   milliseconds currentTime = duration_cast< milliseconds >(system_clock::now().time_since_epoch());
   topics[channel]->last_msg = currentTime;
 }
@@ -112,10 +110,11 @@ int main(int argc, char **argv) {
 
   ros::NodeHandle n;
 
+  ros::Subscriber* subscriptions = new ros::Subscriber[numChannel];
+
   for(int i = 0; i < numChannel; i++) {
-    ros::Subscriber sub = n.subscribe<std_msgs::String>("topic" + std::to_string(i), 1, boost::bind(recievedMessage, _1, i));
+    subscriptions[i] = n.subscribe<std_msgs::String>("topic" + std::to_string(i), 1, boost::bind(recievedMessage, _1, i));
   }
-  // ros::Subscriber sub = n.subscribe("topic0", 1,recievedMessage_Topic);
 
   // Start minitor thread
   std::thread monitor_thread(monitor, numChannel);

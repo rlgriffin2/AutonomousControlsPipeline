@@ -1,4 +1,8 @@
 <launch>
-    <node pkg=”rts-identify” type=”monitor” name=”monitor” />
-    <node pkg=”rts-identify” type=”client1” name=”client1” />
+    <node pkg="rts-identify" type="monitor" args="'5'" name="monitor" output="screen"/>
+    <node pkg="rts-identify" type="client" args="'0' '20'" name="client0" output="screen"/>
+    <node pkg="rts-identify" type="client" args="'1' '20'" name="client1" output="screen"/>
+    <node pkg="rts-identify" type="client" args="'2' '20'" name="client2" output="screen"/>
+    <node pkg="rts-identify" type="client" args="'3' '20'" name="client3" output="screen"/>
+    <node pkg="rts-identify" type="client" args="'4' '20'" name="client4" output="screen"/>
 </launch>

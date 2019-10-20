@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
     if(!should_skip) {
       pub.publish(msg);
     } else {
-      ROS_INFO("Skipped\n");
+      ROS_INFO("Client %i skipped\n", clientNum);
     }
 
     ros::spinOnce();
