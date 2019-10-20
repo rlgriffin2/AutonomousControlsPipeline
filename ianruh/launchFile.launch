@@ -1,0 +1,4 @@
+<launch>
+    <node pkg=”rts-identify” type=”monitor” name=”monitor” />
+    <node pkg=”rts-identify” type=”client1” name=”client1” />
+</launch>
