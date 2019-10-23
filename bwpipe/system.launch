@@ -1,0 +1,27 @@
+<launch>
+
+  <group ns="endpoints">
+    <node pkg="beginner_tutorials" name="multi" type="multi" launch-prefix='gnome-terminal --command'/>
+  </group>  
+
+  <group ns="A">
+   <node pkg="beginner_tutorials" name="talker" type="talker" launch-prefix='gnome-terminal --command'/>
+  </group>
+
+  <group ns="B">
+   <node pkg="beginner_tutorials" name="talker" type="talker" launch-prefix='gnome-terminal --command'/>
+  </group>
+
+  <node pkg="beginner_tutorials" name="pipeA" type="pipe">
+    <remap from="pipeIn" to="A/talkerOut"/>
+    <remap from="pipeOut" to="endpoints/multiInA"/>
+  </node>
+
+  <node pkg="beginner_tutorials" name="pipeB" type="pipe">
+    <remap from="pipeIn" to="B/talkerOut"/>
+    <remap from="pipeOut" to="endpoints/multiInB"/>
+  </node>
+
+  <node pkg="beginner_tutorials" name="pipe_listener" type="pipe_listener" launch-prefix='gnome-terminal --command'/>
+
+</launch>
